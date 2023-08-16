@@ -26,7 +26,7 @@
         <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="#portfolio">Portfolio</a>
-        <a href="#contact">Contact</a>
+        <a href="#contact">Article</a>
       </nav>
 
       <!-- <div class="bx bx-moon" id="darkMode-icon"></div> -->
@@ -36,9 +36,9 @@
     <!-- home section design -->
     <section class="home" id="home">
       <div class="home-content">
-        <h3>Lorem, ipsum.</h3>
-        <h1>Lorem, ipsum</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem nihil dolores rem qui, beatae quam.</p>
+        <h3>Ayo beli sekarang</h3>
+        <h1>Manifestasi</h1>
+        <p>Tempat jasa website, aplikasi, dan design murah dengan harga terjangkau</p>
 
         <div class="social-media">
           <a href="#"><i class="bx bxl-facebook"></i></a>
@@ -46,7 +46,7 @@
           <a href="#"><i class="bx bxl-instagram-alt"></i></a>
           <a href="#"><i class="bx bxl-linkedin"></i></a>
         </div>
-        <a href="#" class="btn-logo">
+        <a href="https://wa.link/3rhcme" class="btn-logo">
           <i class="bx bxl-whatsapp"></i>
           <p>Konsultasikan sekarang</p>
         </a>
@@ -56,15 +56,15 @@
         <div class="r-box">
           <div class="r-content" style="--i: 0">
             <i class="bx bx-code-alt"></i>
-            <h3>Web Developer</h3>
+            <h3>Website</h3>
           </div>
           <div class="r-content" style="--i: 1">
-            <i class="bx bx-camera"></i>
-            <h3>Photographer</h3>
+            <i class="bx bx-mobile-alt"></i>
+            <h3>Aplikasi</h3>
           </div>
           <div class="r-content" style="--i: 2">
             <i class="bx bx-palette"></i>
-            <h3>Web Designer</h3>
+            <h3>Designer</h3>
           </div>
           <!-- <div class="r-content">
             <i class="bx bx-code-alt"></i>
@@ -89,9 +89,9 @@
       </div>
       <div class="about-content">
         <h2 class="heading">About <span>Us</span></h2>
-        <h3>Lorem ipsum dolor sit amet.</h3>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus quo illo omnis reiciendis! Asperiores deleniti deserunt qui ipsam dolores, quisquam ex dolorum a quo culpa magnam fugiat excepturi quod ducimus!</p>
-        <a href="#" class="btn">Read More</a>
+        <h3>Penasaran dengan kita?</h3>
+        <p>Kita adalah para developer yang bekerja sama untuk membangun bisnis anda berupa wesite, aplikasi, dan juga design, dengan harga yang terjangkau</p>
+        <a href="#services" class="btn">Read More</a>
       </div>
     </section>
 
@@ -102,21 +102,21 @@
       <div class="services-container">
         <div class="services-box">
           <i class="bx bx-code-alt"></i>
-          <h3>Web Development</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta cupiditate libero vero sed perferendis qui vitae blanditiis molestiae quisquam, autem consectetur velit cum culpa inventore officia est quasi nam soluta.</p>
-          <a href="#" class="btn">Read More</a>
+          <h3>Website</h3>
+          <p>Kita akan membangun bisnis anda berupa website yang modern, baik itu website landing page, company profile, bio link, toko online dll sesuai request anda</p>
+          <a href="#portfolio" class="btn">Read More</a>
         </div>
         <div class="services-box">
           <i class="bx bx-mobile-alt"></i>
-          <h3>Mobile Development</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta cupiditate libero vero sed perferendis qui vitae blanditiis molestiae quisquam, autem consectetur velit cum culpa inventore officia est quasi nam soluta.</p>
-          <a href="#" class="btn">Read More</a>
+          <h3>Aplikasi</h3>
+          <p>Kita akan membangun bisnis anda berupa aplikasi mobile, baik itu android ataupun ios, sesuai dengan request anda</p>
+          <a href="#portfolio" class="btn">Read More</a>
         </div>
         <div class="services-box">
-          <i class="bx bxs-paint"></i>
+          <i class="bx bx-palette"></i>
           <h3>Designer</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta cupiditate libero vero sed perferendis qui vitae blanditiis molestiae quisquam, autem consectetur velit cum culpa inventore officia est quasi nam soluta.</p>
-          <a href="#" class="btn">Read More</a>
+          <p>Kita akan mendesign bisnis dan produk anda mulai dari design website, design aplikasi, design logo dll sesuai request anda</p>
+          <a href="#portfolio" class="btn">Read More</a>
         </div>
       </div>
     </section>
@@ -126,9 +126,9 @@
       <h3 class="heading">Harga mulai <span>Rp.100.000 !!</span></h3>
       <div class="price-container">
         <div class="price-card">
-          <a href="#" class="btn-logo">
+          <a href="https://wa.link/3rhcme" class="btn-logo">
             <i class="bx bxl-whatsapp"></i>
-            <p href="#">Konsultasikan sekarang</p>
+            <p>Konsultasikan sekarang</p>
           </a>
           <p class="note">harga belum termasuk biaya hosting dll</p>
         </div>
@@ -137,34 +137,34 @@
 
     <!-- portfolio section design -->
     <section class="portofolio" id="portfolio">
-      <h2 class="heading">Latest <span>Project</span></h2>
+      <h2 class="heading">Portfolio <span>Project</span></h2>
 
       <div class="portofolio-container">
         <div class="portofolio-box">
-          <img src="{{ asset('images/portfolio1.jpg') }}" alt="" />
+          <img src="{{ asset('images/design.jpg') }}" alt="" />
 
           <div class="portofolio-layer">
             <h4>Designer</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, voluptatem.</p>
-            <a href="#"><i class="bx bx-link-external"></i></a>
+            <p>COMING SOON</p>
+            <a href="/article"><i class="bx bx-link-external"></i></a>
           </div>
         </div>
         <div class="portofolio-box">
-          <img src="{{ asset('images/portfolio2.jpg') }}" alt="" />
+          <img src="{{ asset('images/website.jpg') }}" alt="" />
 
           <div class="portofolio-layer">
             <h4>Website</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, voluptatem.</p>
-            <a href="#"><i class="bx bx-link-external"></i></a>
+            <p>COMING SOON</p>
+            <a href="/article"><i class="bx bx-link-external"></i></a>
           </div>
         </div>
         <div class="portofolio-box">
-          <img src="{{ asset('images/portfolio3.jpg') }}" alt="" />
+          <img src="{{ asset('images/mobile.jpg') }}" alt="" />
 
           <div class="portofolio-layer">
             <h4>Mobile App</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, voluptatem.</p>
-            <a href="#"><i class="bx bx-link-external"></i></a>
+            <p>COMING SOON</p>
+            <a href="/article"><i class="bx bx-link-external"></i></a>
           </div>
         </div>
       </div>
