@@ -26,7 +26,7 @@
         <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="#portfolio">Portfolio</a>
-        <a href="#contact">Article</a>
+        <a href="/article">Article</a>
       </nav>
 
       <!-- <div class="bx bx-moon" id="darkMode-icon"></div> -->
@@ -90,7 +90,7 @@
       <div class="about-content">
         <h2 class="heading">About <span>Us</span></h2>
         <h3>Penasaran dengan kita?</h3>
-        <p>Kita adalah para developer yang bekerja sama untuk membangun bisnis anda berupa wesite, aplikasi, dan juga design, dengan harga yang terjangkau</p>
+        <p>Kita adalah para developer yang bekerja sama untuk membangun bisnis atau membuatkan anda berupa wesite, aplikasi, dan juga design, dengan harga yang terjangkau</p>
         <a href="#services" class="btn">Read More</a>
       </div>
     </section>
@@ -103,13 +103,13 @@
         <div class="services-box">
           <i class="bx bx-code-alt"></i>
           <h3>Website</h3>
-          <p>Kita akan membangun bisnis anda berupa website yang modern, baik itu website landing page, company profile, bio link, toko online dll sesuai request anda</p>
+          <p>Kita akan membuatkan anda, atau membangun bisnis anda berupa website yang modern, baik itu website landing page, company profile, bio link, toko online dll sesuai request anda</p>
           <a href="#portfolio" class="btn">Read More</a>
         </div>
         <div class="services-box">
           <i class="bx bx-mobile-alt"></i>
           <h3>Aplikasi</h3>
-          <p>Kita akan membangun bisnis anda berupa aplikasi mobile, baik itu android ataupun ios, sesuai dengan request anda</p>
+          <p>Kita akan membuatkan anda, atau membangun bisnis anda berupa aplikasi mobile, baik itu android ataupun ios, sesuai dengan request anda</p>
           <a href="#portfolio" class="btn">Read More</a>
         </div>
         <div class="services-box">
