@@ -3,9 +3,17 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8">
-    <title> Responsive Sidebar Menu  | CodingLab </title>
+    <title>Manifestasi Admin</title>
     <link rel="stylesheet" href="{{ url('css/sidebarstyle.css') }}">
     <link rel="stylesheet" href="{{ url('css/cardstyle.css') }}">
+    <link rel="stylesheet" href="{{ url('css/tablestyle.css') }}">
+    <link rel="stylesheet" href="{{ url('css/formstyle.css') }}">
+    {{-- <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="{{ asset('summernote/summernote-lite.css') }}">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"> --}}
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,11 +26,6 @@
         <i class='bx bx-menu' id="btn" ></i>
     </div>
     <ul class="nav-list">
-      <li>
-          <i class='bx bx-search' ></i>
-         <input type="text" placeholder="Search...">
-         <span class="tooltip">Search</span>
-      </li>
       <li>
         <a href="#">
           <i class='bx bx-grid-alt'></i>
@@ -38,14 +41,14 @@
        <span class="tooltip">Project</span>
      </li>
      <li>
-       <a href="#">
+       <a href="{{ route('portofolio.index') }}">
          <i class='bx bx-chat' ></i>
          <span class="links_name">Portfolio</span>
        </a>
        <span class="tooltip">Portfolio</span>
      </li>
      <li>
-       <a href="#">
+       <a href="{{ route('category.index') }}">
          <i class='bx bx-pie-chart-alt-2' ></i>
          <span class="links_name">Category</span>
        </a>
@@ -58,27 +61,7 @@
        </a>
        <span class="tooltip">Income</span>
      </li>
-     {{-- <li>
-       <a href="#">
-         <i class='bx bx-cart-alt' ></i>
-         <span class="links_name">Order</span>
-       </a>
-       <span class="tooltip">Order</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-heart' ></i>
-         <span class="links_name">Saved</span>
-       </a>
-       <span class="tooltip">Saved</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-cog' ></i>
-         <span class="links_name">Setting</span>
-       </a>
-       <span class="tooltip">Setting</span>
-     </li> --}}
+  
      <li class="profile">
          <div class="profile-details">
            <img src="profile.jpg" alt="profileImg">
@@ -93,14 +76,30 @@
   </div>
   <section class="home-section">
     <aside>
-      <div class="container" style="height:160px;width:100%;background-color:#754ef9;display:block;position:absolute;"> 
-      </div>
-        <div class="section-container">
+      <div class="container" style="height:160px;max-width:1200px;background-color:#754ef9;display:inline-block;position:absolute;"> 
+            </div>
+        <div class="section-container" style="max-height: 1200px;">
+            
             @yield('container')
         </div>
+        
     </aside>
   </section>
-  <script>
+  <div class="container"> 
+          @yield('content')
+  </div>
+  </body>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url('js/tag.js') }}"></script>
+<script src="{{ url('js/preview.js') }}"></script>
+<script src="{{ url('js/summer.js') }}"></script>
+<script src="{{ url('js/openModal.js') }}"></script>
+<script src="{{ url('js/openCategoryModal.js') }}"></script>
+<script src="{{ url('js/checkbox.js') }}"></script>
+<script src="{{ asset('summernote/summernote-lite.js') }}"></script>
+ 
+<script>
   let sidebar = document.querySelector(".sidebar");
   let closeBtn = document.querySelector("#btn");
   let searchBtn = document.querySelector(".bx-search");
@@ -114,6 +113,7 @@
     sidebar.classList.toggle("open");
     menuBtnChange(); //calling the function(optional)
   });
+
 
   // following are the code to change sidebar button(optional)
   function menuBtnChange() {

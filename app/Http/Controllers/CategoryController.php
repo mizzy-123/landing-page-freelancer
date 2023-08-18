@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\category;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StorecategoryRequest;
 use App\Http\Requests\UpdatecategoryRequest;
-use App\Models\category;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -15,7 +16,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $data = category::all();
+        $data_paginate = category::paginate(5);
+        $category = $data->find(1);       
+        return view('category.index', compact('data','category' , 'data_paginate'));
     }
 
     /**
@@ -34,9 +38,12 @@ class CategoryController extends Controller
      * @param  \App\Http\Requests\StorecategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorecategoryRequest $request)
+    public function store(Request $req)
     {
-        //
+        $category = new category();
+        $category->nama = $req->name;
+        $category->save();
+        return redirect('/category');
     }
 
     /**
@@ -56,9 +63,15 @@ class CategoryController extends Controller
      * @param  \App\Models\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(category $category)
+    public function edit(Request $req, $id)
     {
-        //
+        $category = category::find($id);
+        $data = category::all();
+        $data_paginate = category::paginate(5);
+        $category->all();
+        $trigger = true;
+        return view('category.update', compact('category', 'data', 'data_paginate', 'trigger'));
+        
     }
 
     /**

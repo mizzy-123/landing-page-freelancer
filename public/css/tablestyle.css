@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+body{
+    font-family: 'Open Sans', sans-serif;
+    
+}
+.search{
+  
+  top:6px;
+  left:10px;
+}
+
+.card-search{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:end;
+    align-items:flex-end;
+    border-radius: 15px;
+    background-color: rgb(224, 221, 221);
+    width: fit-content;
+}
+
+.info{
+    font-size: 20pt;
+}
+
+.form-control-table{
+    
+    border:none;
+    padding-left:32px;
+}
+
+.form-control:focus{
+    
+    border:none;
+    box-shadow:none;
+}
+
+.green{
+    
+    color:green;
+}
+
+.container-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 10vh;    
+}
+
+.container-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    width: 100%;
+}
+
+
+
+
+
