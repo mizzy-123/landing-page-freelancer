@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('dashboard.home');
 });
+
+Route::get('/project', function () {
+    return view('project.index');
+})->name('project.index');

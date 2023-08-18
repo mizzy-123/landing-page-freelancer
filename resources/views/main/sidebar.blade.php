@@ -31,7 +31,7 @@
          <span class="tooltip">Dashboard</span>
       </li>
       <li>
-       <a href="#">
+       <a href="{{ route('project.index') }}">
          <i class='bx bx-user' ></i>
          <span class="links_name">Project</span>
        </a>
@@ -95,7 +95,7 @@
     <aside>
       <div class="container" style="height:160px;width:100%;background-color:#754ef9;display:block;position:absolute;"> 
       </div>
-        <div class="text">
+        <div class="section-container">
             @yield('container')
         </div>
     </aside>

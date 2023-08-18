@@ -239,12 +239,25 @@
   width: calc(100% - 250px);
 }
 .home-section .text{
-  display: inline-block;
-  color: #11101d;
-  font-size: 25px;
+  display:inline-block;
   font-weight: 500;
-  margin: 18px
+  align-items:center;
 }
+
+.section-container{
+  display: inline-block;
+  /* grid-template-columns: repeat(3, 1fr); */
+  align-items: center;
+  justify-content: center;
+  /* flex-wrap: wrap; */
+  /* gap:2.5rem; */
+  /* max-width: 1000px;
+  margin: 0; */
+  /* margin-left: 50%;
+  margin-right: 50%; */
+}
+
+
 @media (max-width: 420px) {
   .sidebar li .tooltip{
     display: none;
