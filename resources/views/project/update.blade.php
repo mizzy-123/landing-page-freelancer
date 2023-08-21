@@ -93,11 +93,11 @@
                   <td class="div-end">
                     <div class="container-row">
                     
-                    <a class="card-button-update" href="{{ route('project.edit', $j->id) }}">
+                    <a class="card-button-update" href="{{ route('portofolio.edit', $j->id) }}">
                     <button class="card-button-update" data-bs-toggle="modal" data-bs-target="#updateModal"><i class="bx bx-edit"></i></button></a>
                     
 
-                    <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" class="card-button-delete" style="text-decoration: none;color:white;" href="{{ route('project.delete', $j->id) }}">
+                    <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" class="card-button-delete" style="text-decoration: none;color:white;" href="{{ route('portofolio.delete', $j->id) }}">
                     <i class="bx bx-trash"></i></a>
                     
                     </div>
@@ -113,23 +113,34 @@
         
     </div>
 @endsection
+
+
 @section('content')
-    <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal update data -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New Data Project</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="exampleModalLabel">Update Data Project</h5>
+         <a href="{{ route('project.index') }}"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </a>
       </div>
       <div class="modal-body">
         <div class="container">
-            <form  method="POST" action="{{ route('project.store') }}">
+            <form  method="POST" action="{{ route('project.update', $projek->id) }}">
                 @csrf
+                {{-- <td>{{ $j->nama }}</td>
+                  <td>{{ $j->status }}</td>
+                  <td>{{ $j->deadline }} Hari</td>
+                  <td>{{ $j->nama_client }}</td>
+                  <td>Rp. {{ $j->fee }}</td>
+                  <td>{{ $data2->where('id',$j->id_category)->first()->nama }}</td>
+                  <td>{{ $j->note }}</td>
+                   --}}
                 
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input placeholder="project name" id="name" name="name" class="form-input">
+                    <input value="{{ $projek->nama }}" placeholder="project name" id="name" name="name" class="form-input">
                 </div>
                 
                 <div class="form-group">
@@ -137,25 +148,31 @@
                     <select class="form-input" name="status" required id="category">
                     <option value="status" selected>--select status--</option>
                     @foreach($status_indikator as $i)
-                        <option value="{{ $i }}" {{$i == $i  ? 'selected' : ''}}>{{ $i }}</option>
+                        <option value="{{ $i }}" {{$i == $projek->status  ? 'selected' : ''}}>{{ $i }}</option>
                     @endforeach
                 </select>
                 </div>    
                                     
+                @php
+                  $dt = new DateTime($projek->deadline);
+                @endphp                    
                 <div class="form-group">
                     <label for="name">Deadline</label>
                     {{-- <input placeholder="project category" id="name" name="category" class="form-input"> --}}
-                    <input type="date" id="deadline" name="deadline" class="form-input">
+                    <input type="date" value="{{ $dt->format('Y-m-d') }}" id="deadline" name="deadline" class="form-input">
                 </div>
 
                 <div class="form-group">
                     <label for="name">Nama Client</label>
-                    <input type="text" placeholder="nama client" id="client" name="client" class="form-input">
+                    <input type="text" value="{{ $projek->nama_client }}" placeholder="nama client" id="client" name="client" class="form-input">
                 </div>
 
+                @php
+                  $jml = number_format($projek->fee, 0, ",", ".");
+                @endphp
                 <div class="form-group">
                     <label for="name">Biaya</label>
-                      <input type="text" placeholder="Rp 0" id="biaya" name="biaya" oninput="formatCurrency(this)" class="form-input">
+                      <input type="text" value="Rp {{ $jml }}" placeholder="Rp 0" id="biaya" name="biaya" oninput="formatCurrency(this)" class="form-input">
                 </div>
                 
                 <div class="form-group">
@@ -164,43 +181,39 @@
                 <select class="form-input" name="category" required id="category">
                     <option value="category" selected>--select category--</option>
                     @foreach($data2 as $i)
-                        <option value="{{ $i->id }}" {{$i->id == $i->id  ? 'selected' : ''}}>{{ $i->nama }}</option>
+                        <option value="{{ $i->id }}" {{$i->id == $projek->id_category  ? 'selected' : ''}}>{{ $i->nama }}</option>
                     @endforeach
                 </select>
                 </div>
 
                 <div class="form-group">
                     <label for="note">Note</label>
-                    <textarea class="form-input" maxlength="80" name="note" id="note"></textarea>
+                    <textarea class="form-input" maxlength="80" name="note" id="note">{{ $projek->note }}</textarea>
                 </div>
 
                 <div class="modal-footer">
-                <a href="{{ route('project.store') }}">
-                <button type="submit" class="btn btn-primary">Save</button>    
+                <a href="{{ route('project.update', $projek->id) }}">
+                <button type="submit" class="btn btn-primary">Update</button>    
                 </a>  
                 </div>
             </form>
         </div>
       </div>
       <div class="modal-footer">
+        <a href="{{ route('project.index') }}">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </a>  
       </div>
     </div>
   </div>
 </div>
-
 @endsection
 
 @section('library')
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-{{-- <script src="{{ url('js/tag.js') }}"></script> --}}
-{{-- <script src="{{ url('js/preview.js') }}"></script> --}}
-<script src="{{ url('js/summer.js') }}"></script>
-<script src="{{ url('js/openModal.js') }}"></script>
-{{-- <script src="{{ url('js/openCategoryModal.js') }}"></script> --}}
-{{-- <script src="{{ url('js/checkbox.js') }}"></script> --}}
-<script src="{{ url('js/currencyFormat.js') }}"></script>
 <script src="{{ asset('summernote/summernote-lite.js') }}"></script>
+<script src="{{ url('js/openModal.js') }}"></script>
+<script src="{{ url('js/currencyFormat.js') }}"></script>
 
 @endsection

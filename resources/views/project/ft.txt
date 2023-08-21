@@ -1,0 +1,12 @@
+<td><i class="fa fa-check-circle-o green"></i><span class="ms-1">Paid</span></td>
+<td><i class="fa fa-dot-circle-o text-danger"></i><span class="ms-1">Failed</span></td>
+
+
+kategori indikator :
+planning
+development
+testing
+debugging
+done
+cancel
+revisi

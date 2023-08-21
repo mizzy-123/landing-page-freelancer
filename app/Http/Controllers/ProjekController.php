@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\projek;
+use App\Models\category;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreprojekRequest;
 use App\Http\Requests\UpdateprojekRequest;
-use App\Models\projek;
 
 class ProjekController extends Controller
 {
@@ -15,7 +18,20 @@ class ProjekController extends Controller
      */
     public function index()
     {
-        //
+        $data = projek::all();
+        $data2 = category::all();
+        $data_paginate = projek::paginate(5);
+        $status_indikator = [
+            "planning",
+            "development",
+            "testing",
+            "debugging",
+            "done",
+            "cancel",
+            "revisi"
+        ];
+        return view('project.index', compact('data','data2' ,'data_paginate', 'status_indikator'));
+    
     }
 
     /**
@@ -34,9 +50,51 @@ class ProjekController extends Controller
      * @param  \App\Http\Requests\StoreprojekRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreprojekRequest $request)
+    public function store(Request $req)
     {
-        //
+        $req->validate([
+            "name" => "required|string",
+            "status" => "required|string",
+            "deadline" => "required|date",
+            "client" => "required|string",
+            "biaya" => "required|string",
+            "category" => "required|string",
+        ]);
+
+        $projek = new projek();
+        // print_r([
+        //     $req->name,
+        //     $req->status,
+        //     $req->deadline,
+        //     $req->client,
+        //     $req->biaya,
+        //     $req->category,
+        //     $req->note
+        // ]            
+        // );
+
+        // {{-- <td>{{ $j->nama }}</td>
+        //           <td>{{ $j->status }}</td>
+        //           <td>{{ $j->deadline }} Hari</td>
+        //           <td>{{ $j->nama_client }}</td>
+        //           <td>Rp. {{ $j->fee }}</td>
+        //           <td>{{ $data2->where('id',$j->id_category)->first()->nama }}</td>
+        //           <td>{{ $j->note }}</td>
+        //            --}}
+        $jumlah = explode("Rp ", $req->biaya);
+        $jumlah_t = explode(".", $jumlah[1]);
+        $fee = $jumlah_t[0] . $jumlah_t[1];
+
+        $projek->nama = $req->name;
+        $projek->status = $req->status;
+        $projek->deadline = $req->deadline;
+        $projek->nama_client = $req->client;
+        $projek->fee = intval($fee);
+        $projek->id_category = $req->category;
+        $projek->note = $req->note;
+        $projek->save();
+        return redirect('project')->with('success', 'Data successfully saved'); 
+        
     }
 
     /**
@@ -56,9 +114,22 @@ class ProjekController extends Controller
      * @param  \App\Models\projek  $projek
      * @return \Illuminate\Http\Response
      */
-    public function edit(projek $projek)
+    public function edit(Request $req, $id)
     {
-        //
+        $projek = projek::find($id);
+        $data = $projek->all();
+        $data2 = category::all();
+        $data_paginate = projek::paginate(5);
+        $status_indikator = [
+            "planning",
+            "development",
+            "testing",
+            "debugging",
+            "done",
+            "cancel",
+            "revisi"
+        ];
+        return view("project.update", compact('projek','data','data2' ,'data_paginate', 'status_indikator'));
     }
 
     /**
@@ -68,9 +139,44 @@ class ProjekController extends Controller
      * @param  \App\Models\projek  $projek
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateprojekRequest $request, projek $projek)
+    public function update(Request $req, $id)
     {
-        //
+     $req->validate([
+            "name" => "required|string",
+            "status" => "required|string",
+            "deadline" => "required|date",
+            "client" => "required|string",
+            "biaya" => "required|string",
+            "category" => "required|string",
+        ]);
+
+        $jumlah = explode("Rp ", $req->biaya);
+        $jumlah_t = explode(".", $jumlah[1]);
+        $fee = $jumlah_t[0] . $jumlah_t[1];
+
+        $projek = projek::find($id);
+        
+        $projek->nama = $req->name;
+        $projek->status = $req->status;
+        $projek->deadline = $req->deadline;
+        $projek->nama_client = $req->client;
+        $projek->fee = $fee;
+        $projek->id_category = $req->category;
+        $projek->note = $req->note;
+        $projek->save();
+        // print_r([
+        //     $projek->nama,
+        //     $projek->status,
+        //     $projek->deadline,
+        //     $projek->nama_client,
+        //     $projek->fee,
+        //     $projek->id_category,
+        //     $projek->note
+        // ]            
+        // );
+        return redirect('project')->with('success', 'Data successfully updated'); 
+
+
     }
 
     /**
@@ -79,8 +185,9 @@ class ProjekController extends Controller
      * @param  \App\Models\projek  $projek
      * @return \Illuminate\Http\Response
      */
-    public function destroy(projek $projek)
+    public function destroy($id)
     {
-        //
+        projek::where('id', $id)->delete();
+        return redirect("project")->with('success', 'Data successfully deleted');
     }
 }

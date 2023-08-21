@@ -11,7 +11,7 @@
   left: 0;
   top:  0;
   height: 100%;
-  width: 80px;
+  width: 8%;
   /* background: #11101D; */
   background: #fff;
   padding: 6px 0px;
@@ -24,6 +24,7 @@
 
 .body{
   background-color:#E4E9F7;
+  
 }
 
 .sidebar .logo-details{

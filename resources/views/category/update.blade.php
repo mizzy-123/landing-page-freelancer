@@ -19,7 +19,6 @@
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Launch demo modal
 </button> --}}
-
 </div>
      
         <div class="card-table">
@@ -28,7 +27,7 @@
                     <div class="container-row">
                       <div class="container-column">
                         <p class="info"><b>Category</b></p>
-                        <p><b>20 total,</b> category services</p>
+                        <p><b>{{ $data->count() }} total,</b> category services</p>
                    </div>  
                     </div>   
                 </div>
@@ -79,7 +78,7 @@
           
 @endsection
 
-@section('content')
+{{-- @section('content')
     <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable">
@@ -92,14 +91,14 @@
         <div class="container">
             <form method="POST" action="{{ route('category.store') }}">
                 @csrf
-                <div class="form-group">
-                    <label for="name">Category Name</label>
-                    <input placeholder="category name" id="name" name="name" class="form-input">
-                </div>
-                
-                <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Save</button>    
-                </div>
+                  <div class="form-group">
+                      <label for="name">Category Name</label>
+                      <input placeholder="category name" id="name" name="name" class="form-input">
+                  </div>
+                  
+                  <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary">Save</button>    
+                  </div>
             </form>
         </div>
       </div>
@@ -109,11 +108,11 @@
     </div>
   </div>
 </div>
-@endsection
+@endsection --}}
 
 @section('content')
     <!-- Update Modal -->
-<div class="modal fade" id="updateCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
@@ -145,4 +144,11 @@
     </div>
   </div>
 </div>
+@endsection
+
+@section('library')
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('summernote/summernote-lite.js') }}"></script>
+<script src="{{ url('js/openModal.js') }}"></script>
 @endsection

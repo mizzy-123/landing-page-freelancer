@@ -134,6 +134,7 @@ class ArtikelController extends Controller
         //     ]);
 
         $artikel->save();
+        
        
         return redirect('/portofolio')->with('success', 'data berhasil diupdate');
     }   

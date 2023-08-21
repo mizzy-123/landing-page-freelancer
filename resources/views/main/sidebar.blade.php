@@ -76,7 +76,7 @@
   </div>
   <section class="home-section">
     <aside>
-      <div class="container" style="height:160px;max-width:1200px;background-color:#754ef9;display:inline-block;position:absolute;"> 
+      <div class="container" style= height:160px;max-width:1200px;background-color:#754ef9;display:inline-block;position:absolute;"> 
             </div>
         <div class="section-container" style="max-height: 1200px;">
             
@@ -89,30 +89,24 @@
           @yield('content')
   </div>
   </body>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="{{ url('js/tag.js') }}"></script>
-<script src="{{ url('js/preview.js') }}"></script>
-<script src="{{ url('js/summer.js') }}"></script>
-<script src="{{ url('js/openModal.js') }}"></script>
-<script src="{{ url('js/openCategoryModal.js') }}"></script>
-<script src="{{ url('js/checkbox.js') }}"></script>
-<script src="{{ asset('summernote/summernote-lite.js') }}"></script>
+{{-- untuk tempat masang library   --}}
+@yield('library')
+
  
 <script>
   let sidebar = document.querySelector(".sidebar");
   let closeBtn = document.querySelector("#btn");
-  let searchBtn = document.querySelector(".bx-search");
+  // let searchBtn = document.querySelector(".bx-search");
 
   closeBtn.addEventListener("click", ()=>{
     sidebar.classList.toggle("open");
     menuBtnChange();//calling the function(optional)
   });
 
-  searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
-    sidebar.classList.toggle("open");
-    menuBtnChange(); //calling the function(optional)
-  });
+  // searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+  //   sidebar.classList.toggle("open");
+  //   menuBtnChange(); //calling the function(optional)
+  // });
 
 
   // following are the code to change sidebar button(optional)

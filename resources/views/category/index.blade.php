@@ -52,7 +52,7 @@
                       <div class="container-row">
                       
                       <a class="card-button-update" href="{{ route('category.edit', $i->id) }}">
-                      <button class="card-button-update" data-bs-toggle="modal" data-bs-target="#updateCategoryModal"><i class="bx bx-edit"></i></button></a>
+                      <button class="card-button-update" data-bs-toggle="modal" data-bs-target="#updateModal"><i class="bx bx-edit"></i></button></a>
                       
 
                       <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" class="card-button-delete" style="text-decoration: none;color:white;" href="{{ route('category.delete', $i->id) }}">
@@ -105,71 +105,15 @@
   </div>
 </div>
 @endsection
-@section('content')
-    <!-- Modal -->
-<div class="modal fade" id="updateCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New Data Category</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-            <form method="POST" action="{{ route('category.store') }}">
-                @csrf
-                <div class="form-group">
-                    <label for="name">Category Name</label>
-                    <input placeholder="category name" id="name" name="name" class="form-input">
-                </div>
-                
-                <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Save</button>    
-                </div>
-            </form>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+@section('library')
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+{{-- <script src="{{ url('js/tag.js') }}"></script> --}}
+{{-- <script src="{{ url('js/preview.js') }}"></script> --}}
+{{-- <script src="{{ url('js/summer.js') }}"></script> --}}
+<script src="{{ url('js/openModal.js') }}"></script>
+{{-- <script src="{{ url('js/openCategoryModal.js') }}"></script> --}}
+{{-- <script src="{{ url('js/checkbox.js') }}"></script> --}}
+{{-- <script src="{{ url('js/currencyFormat.js') }}"></script> --}}
+{{-- <script src="{{ asset('summernote/summernote-lite.js') }}"></script> --}}
 @endsection
-
-{{-- @section('content')
-    <!-- Update Modal -->
-<div class="modal fade" id="updateCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Update Data Category</h5>
-        <a href="{{ route('category.index') }}">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </a>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-            <form method="POST"  action="{{ route('category.update', $category->id) }}">
-                @csrf   
-                <div class="form-group">
-                    <label for="name">Category Name</label>
-                    <input placeholder="category name" id="name" value="{{ $category->nama }}" name="name" class="form-input">
-                </div>
-                
-                <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Update</button>    
-                </div>
-            </form>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <a href="{{ route('category.index') }}">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-@endsection
- --}}

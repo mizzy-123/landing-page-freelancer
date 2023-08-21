@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProjekController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,9 +27,11 @@ Route::get('/cb', function () {
     return view('cb');
 });
 
-Route::get('/project', function () {
-    return view('project.index');
-})->name('project.index');
+Route::get('/project', [ProjekController::class, 'index'])->name('project.index');
+Route::post('/project', [ProjekController::class, 'store'])->name('project.store');
+Route::get('/project-delete/{id}', [ProjekController::class, 'destroy'])->name('project.delete');
+Route::get('/project/{id}', [ProjekController::class, 'edit'])->name('project.edit');
+Route::post('/project/{id}', [ProjekController::class, 'update'])->name('project.update');
 
 Route::get('/portofolio', [ArtikelController::class, 'index'])->name('portofolio.index');
 Route::post('/portofolio', [ArtikelController::class, 'store'])->name('portofolio.store');
