@@ -34,6 +34,8 @@
       <div class="bx bx-menu" id="menu-icon"></div>
     </header>
     <!-- home section design -->
+
+    
     <section class="home" id="home">
       <div class="home-content">
         <h3>Lorem, ipsum.</h3>
@@ -231,5 +233,7 @@
 
     <!-- custom js -->
     <script src="{{ asset('js/script.js') }}"></script>
+
+
   </body>
 </html>

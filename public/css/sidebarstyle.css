@@ -33,6 +33,7 @@
   flex-wrap:wrap;
   align-items: center;
   position: relative;
+  /* color: */
 }
 
 .sidebar .logo-details .icon{

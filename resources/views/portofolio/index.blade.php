@@ -29,26 +29,26 @@
                         <p class="info"><b>Portfolio</b></p>
                         <p><b>{{ $data_to_update->count() }} total,</b> project have done</p>
                       </div>
+                      
+                     
                       <div class="container-row" style="width:30%;">
                         <div class="container-column">
-                          <p class="info"><b>{{   $data_to_update->where('id_category', $data2->where('id',1)->first()->id)->count()}}</b></p>
-                          <p>{{ $data2->where('id',1)->first()->nama }}</p>
+                          <p class="info"><b>{{  ($data2->count() != 0)? $data_to_update->where('id_category', $data2->where('id',1)->first()->id)->count() : '' }}</b></p>
+                          <p>{{ ($data2->count() != 0)? $data2->where('id',1)->first()->nama : '' }}</p>
                         </div>
                         <div class="container-column">
-                          <p class="info"><b>{{ $data_to_update->where('id_category', $data2->where('id',2)->first()->id)->count() }}</b></p>
-                          <p>{{ $data2->where('id',2)->first()->nama }}</p>
+                          <p class="info"><b>{{ ($data2->count() != 0)? $data_to_update->where('id_category', $data2->where('id',2)->first()->id)->count():'' }}</b></p>
+                          <p>{{ ($data2->count() != 0)? $data2->where('id',2)->first()->nama : '' }}</p>
                         </div>
                         <div class="container-column">
-                          <p class="info"><b>{{  $data_to_update->whereNotIn('id_category', [1,2])->count() }}</b></p>
-                          <p>Other</p>
+                          <p class="info"><b>{{ ($data2->count() != 0)? $data_to_update->whereNotIn('id_category', [1,2])->count() : '' }}</b></p>
+                          <p>{{ ($data2->count() != 0)? 'Other' : '' }} </p>
                         </div>
                       </div>
-
+                        
                     </div>   
                     
-                    
                 </div>
-                
                 {{-- <form name="form_delete" method="POST" @disabled(true) action="{{ route('portofolio.delete') }}"> --}}
                   {{-- @csrf --}}
                 <div class="table-responsive">

@@ -1,53 +1,95 @@
 @extends('main.sidebar')
 @section('container')
-    <div class="row" style="display: block;position:absolute; justify-content:center;">
-        <h1 style="color:white;">Dashboard</h1>
-    <div class="card-container" style="margin-top:10px;">
-        <div class="card">
-            <div class="card-content">
-                <h3>Today Visitor</h3>
-                <p><b>10</b></p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-content">
-                <h3>Total Project</h3>
-                <p><b>10</b></p>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-content">
-                <h3>Income</h3>
-                <p>Rp<b>43,000</b></p>
-            </div>
-        </div>
+    <div class="container-div">
+      <h2 style="color:white;">Dashboard</h2>
+      <div class="container-row">
+          <div class="container" style="max-width:50%;max-height:120%;display:flex;flex-wrap:wrap;background:whitesmoke;border-radius:10px;">
+          <canvas id="myChart"></canvas>
+          </div>
+          {{-- <div class="container" style="max-width:50%;max-height:120%;display:flex;flex-wrap:wrap;background:whitesmoke;border-radius:10px;">
+          <canvas id="myChart2"></canvas>
+          </div> --}}
+          {{-- <div class="container" style="max-width:50%;max-height:120%;display:flex;flex-wrap:wrap;background:whitesmoke;border-radius:10px;">
+          <canvas id="projectChart"></canvas>
+          </div> --}}
+          
+      </div>        
     </div>
-    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
+@endsection
 
-<!-- Modal -->
-<div class="container" style="display: block;position: absolute;">
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        nikmat irama
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>   
-</div>
-    </div>
+@section('library')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    // var ctx2 = document.getElementById('myChart2').getContext('2d');
+    // var ctx2 = document.getElementById('projectChart').getContext('2d');
+    var data_daily = @json($daily_data);
+    
+    var jml_visitor = [
+      (data_daily["Monday"] != null)? data_daily["Monday"]["total"] : 0,
+      (data_daily["Tuesday"] != null)? data_daily["Tuesday"]["total"] : 0,
+      (data_daily["Wednesday"] != null)? data_daily["Wednesday"]["total"] : 0,
+      (data_daily["Thursday"] != null)? data_daily["Thursday"]["total"] : 0,
+      (data_daily["Friday"] != null)? data_daily["Friday"]["total"] : 0,
+      (data_daily["Saturday"] != null)? data_daily["Saturday"]["total"] : 0,
+      (data_daily["Sunday"] != null)? data_daily["Sunday"]["total"] : 0
+      ];
+    
+    var data = {
+      labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumaat', 'Sabtu', 'Minggu'],
+      datasets: [{
+        label: 'Jumlah Visitor',
+        data: jml_visitor,
+        borderColor: 'rgba(230, 45, 45, 0.6)',
+        backgroundColor: 'rgba(230, 45, 45, 0.8)',
+        pointBackgroundColor: '#fff', // Warna latar belakang titik
+        pointBorderColor: 'red',     // Warna tepi titik
+        pointRadius: 5,               // Ukuran radius titik
+        pointHoverRadius: 7,           // Ukuran radius titik saat dihover
+        
+      }]
+    };
+
+    var dt_project = {
+      labels: ['Mobile App', 'Web', 'Bot Tele', 'Desain'],
+      datasets: [{
+        label: 'Jenis Project',
+        data: [5,3,2,1],
+        borderColor: 'rgba(230, 45, 45, 0.6)',
+        backgroundColor: 'rgba(230, 45, 45, 0.8)',
+        pointBackgroundColor: '#fff', // Warna latar belakang titik
+        pointBorderColor: 'red',     // Warna tepi titik
+        pointRadius: 5,               // Ukuran radius titik
+        pointHoverRadius: 7,           // Ukuran radius titik saat dihover
+        
+      }]
+
+    }
+
+    var options = {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    };
+
+    var myChart = new Chart(ctx, {
+      type: 'line',
+      data: data,
+      options: options
+    });
+    // var myChart2 = new Chart(ctx2, {
+    //   type: 'pie',
+    //   data: data,
+    //   options: options
+    // });
+
+    // var projectChart = new Chart(ctx2, {
+    //   type: 'pie',
+    //   data = dt_project,
+    //   options: options
+    // });
+
+  </script>
 @endsection

@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\ProjekController;
+use App\Http\Controllers\VisitorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,13 +18,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('landing_page.index');
-});
+// Route::get('/', function () {
+//     return view('landing_page.index');
+// });
 
-Route::get('/home', function () {
-    return view('dashboard.home');
-});
+// Route::get('/home', function () {
+//     return view('dashboard.home');
+// });
 Route::get('/cb', function () {
     return view('cb');
 });
@@ -44,3 +46,7 @@ Route::post('/category', [CategoryController::class, 'store'] )->name('category.
 Route::get('/category/{id}', [CategoryController::class, 'edit'] )->name('category.edit');
 Route::post('/category/{id}', [CategoryController::class, 'update'] )->name('category.update');
 Route::get('/category-delete/{id}', [CategoryController::class, 'destroy'] )->name('category.delete');
+
+Route::get('/', [VisitorController::class, 'index'] )->name('visitor.index');
+Route::get('/daily', [ChartController::class, 'daily_visitor'] )->name('chart.dashboard');
+
