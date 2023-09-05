@@ -142,16 +142,18 @@
       <h2 class="heading">Portfolio <span>Project</span></h2>
 
       <div class="portofolio-container">
+        @foreach ($categories as $c)
         <div class="portofolio-box">
-          <img src="{{ asset('images/design.jpg') }}" alt="" />
+          <img src="{{ asset('storage/' . $c->gambar) }}" alt="{{ $c->nama }}" />
 
           <div class="portofolio-layer">
-            <h4>Designer</h4>
-            <p>COMING SOON</p>
-            <a href="/article"><i class="bx bx-link-external"></i></a>
+            <h4>{{ $c->nama }}</h4>
+            {{-- <p>COMING SOON</p> --}}
+            <a href="/article?category={{ $c->slug }}"><i class="bx bx-link-external"></i></a>
           </div>
         </div>
-        <div class="portofolio-box">
+        @endforeach
+        {{-- <div class="portofolio-box">
           <img src="{{ asset('images/website.jpg') }}" alt="" />
 
           <div class="portofolio-layer">
@@ -168,7 +170,7 @@
             <p>COMING SOON</p>
             <a href="/article"><i class="bx bx-link-external"></i></a>
           </div>
-        </div>
+        </div> --}}
       </div>
     </section>
 

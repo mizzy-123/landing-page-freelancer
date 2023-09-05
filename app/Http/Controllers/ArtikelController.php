@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
 use App\Http\Requests\StoreartikelRequest;
 use App\Http\Requests\UpdateartikelRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ArtikelController extends Controller
 {
@@ -50,11 +52,18 @@ class ArtikelController extends Controller
             'name' => 'required|string',
             'durasi' => 'required|int',
             'link' => 'required|string',
+            'gambar' => 'image|file',
         ]);
+
 
         $slug = SlugService::createSlug(artikel::class, 'slug', $req->name);
 
         $artikel = new artikel();
+
+        if ($req->file('gambar')) {
+            $gambar = $req->file('gambar')->store('gambar-artikel');
+            $artikel->gambar = $gambar;
+        }
 
         $artikel->judul = $req->name;
         $artikel->durasi = $req->durasi;
@@ -63,6 +72,7 @@ class ArtikelController extends Controller
         $artikel->id_category = $req->category;
         $artikel->isi = $req->isi;
         $artikel->slug = $slug;
+        $artikel->excerpt = Str::limit(strip_tags($req->isi), 200);
 
         // print_r(
         //     [    
@@ -115,15 +125,24 @@ class ArtikelController extends Controller
             'name' => 'required|string',
             'durasi' => 'required|int',
             'link' => 'required|string',
+            'gambar' => 'image|file',
         ]);
 
         $artikel = artikel::find($id);
+        if ($req->file('gambar')) {
+            if ($artikel->gambar != null) {
+                Storage::delete($artikel->gambar);
+            }
+            $gambar = $req->file('gambar')->store('gambar-category');
+            $artikel->gambar = $gambar;
+        }
         $artikel->judul = $req->name;
         $artikel->durasi = $req->durasi;
         $artikel->link = $req->link;
         $artikel->tech_stack = $req->teknologi;
         $artikel->id_category = $req->category;
         $artikel->isi = $req->isi_update;
+        $artikel->excerpt = Str::limit(strip_tags($req->isi_update), 200);
 
         // print_r(
         //     [    
@@ -149,6 +168,10 @@ class ArtikelController extends Controller
      */
     public function destroy(Request $req, $id)
     {
+        $artikel = artikel::find($id);
+        if ($artikel->gambar != null) {
+            Storage::delete($artikel->gambar);
+        }
         $data_id = $id;
         artikel::where('id', $data_id)->delete();
 

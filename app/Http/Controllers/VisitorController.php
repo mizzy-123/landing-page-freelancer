@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorevisitorRequest;
 use App\Http\Requests\UpdatevisitorRequest;
+use App\Models\category;
 
 class VisitorController extends Controller
 {
@@ -19,21 +20,25 @@ class VisitorController extends Controller
     {
         $visitor = session()->getId();
         // $first_num = 100;
-        $tamu = new visitor(); 
-        $id_gen = "VIS".$visitor."MYID";
-        
+        $tamu = new visitor();
+        $id_gen = "VIS" . $visitor . "MYID";
+
         $tamu->visitor_id = $id_gen;
         $tamu->ip_address = $req->ip();
         $tamu->user_agent = $req->header('User-Agent');
         $tamu->save();
-        
-        return view('landing_page.index');   
- 
+
+        $categories = category::all();
+
+        return view('landing_page.index', [
+            'categories' => $categories,
+        ]);
+
 
 
         // if($tamu->where('visitor_id', $id_gen)->first() != null){
         //       //jika visitor pernah visit
-              
+
         // }else{
         //     //tambahkan data visitor
         //     if(visitor::pluck('id')->last() != null){
@@ -42,7 +47,7 @@ class VisitorController extends Controller
         //         $tamu->ip_address = $req->ip();
         //         $tamu->user_agent = $req->header('User-Agent');
         //         $tamu->save();
-               
+
         //     }else{
         //         $tamu->visitor_id = $id_gen;
         //         $tamu->ip_address = $req->ip();

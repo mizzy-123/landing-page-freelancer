@@ -28,9 +28,9 @@
                     <div class="container-row">
                       <div class="container-column">
                         <p class="info"><b>Portfolio</b></p>
-                        <p><b>{{ $data->count() }} total,</b> project have done</p>
+                        <p><b>{{ $data_to_update->count() }} total,</b> project have done</p>
                       </div>
-                      <div class="container-row" style="width:30%;">
+                      {{-- <div class="container-row" style="width:30%;">
                         <div class="container-column">
                           <p class="info"><b>{{  $data->where('id_category', $data2->where('id',1)->first()->id)->count()}}</b></p>
                           <p>{{ $data2->where('id',1)->first()->nama }}</p>
@@ -43,7 +43,7 @@
                           <p class="info"><b>{{  $data->whereNotIn('id_category', [1,2])->count() }}</b></p>
                           <p>Other</p>
                         </div>
-                      </div>
+                      </div> --}}
                       
                     </div>   
                     
@@ -183,6 +183,10 @@
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input placeholder="project name" id="name" value="{{ ($data_to_update != null) ? $data_to_update->judul : '' }}" name="name" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label for="name">gambar</label>
+                  <input type="file" placeholder="gambar watermark" id="name" name="gambar" class="form-input">
                 </div>
                 <div class="form-group">
                 <label for="tag-input">Tech Stack</label>

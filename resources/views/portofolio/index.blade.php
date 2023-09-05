@@ -130,6 +130,11 @@
                     <label for="name">Name</label>
                     <input placeholder="project name" id="name" name="name" class="form-input">
                 </div>
+
+                <div class="form-group">
+                  <label for="name">gambar</label>
+                  <input type="file" placeholder="gambar watermark" id="name" name="gambar" class="form-input">
+                </div>
                 
                 <div class="form-group">
                 <label for="tag-input">Tech Stack</label>
