@@ -30,7 +30,7 @@ Route::get('/cb', function () {
 });
 
 // tempat route dashboard disimpan
-Route::middleware('guest')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [ChartController::class, 'daily_visitor'])->name('dashboard');
 
     Route::get('/project', [ProjekController::class, 'index'])->name('project.index');
