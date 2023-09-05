@@ -1,0 +1,207 @@
+.card-container{
+    display: flex;
+    /* grid-template-columns: repeat(3, 1fr); */
+    align-items: center;
+    justify-content: space-around;
+    /* flex-wrap: wrap; */
+    /* gap:2.5rem; */
+    max-width: 1000px;
+    margin: 0;
+    /* margin-left: 50%;
+    margin-right: 50%; */
+}
+
+.container-div{
+    width:100%;
+    display:block;
+    position: absolute;
+    align-items:center;
+    margin: auto;
+    /* background-color:#E4 E9F7; */
+    justify-content: center;
+    
+}
+
+
+
+.card{
+    width: calc(33.33% - 20px);
+    height:30vh;
+    padding-left: 15px;
+    box-shadow: 2px 3px 15px 0px #836ad7cc;
+    box-sizing: border-box;
+    border: 2px solid rgb(197, 195, 195);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+.card-img{
+    max-width: 100%;
+    max-height: 150px;
+}
+
+.card-preview{
+    border:1px solid #ccc;
+    padding:10px;
+    margin:5px;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    flex-wrap: wrap;
+    
+}
+
+.card-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-width: 170px;
+    height:30vh;
+}
+
+.button-card{
+    display: flex;
+    /* position: absolute; */
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 2px;
+    border-radius: 15px;
+    background-image: linear-gradient(
+        to right, rgb(126, 71, 177), rgb(164, 153, 240)
+    );
+}
+
+.div-end{
+    justify-content: end;
+    align-items: flex-end;
+    display: flex;
+}
+
+
+.card-button-delete{
+    display: flex;
+    /* position: absolute; */
+    width:10vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 2px;
+    border-radius: 10px;
+    background:rgb(219, 38, 38);
+}
+
+.card-button-delete:hover{
+    display: flex;
+    /* position: absolute; */
+    width:10vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 2px;
+    border-radius: 10px;
+    background:rgb(176, 25, 25);
+}
+
+.card-button-update{
+    display: flex;
+    /* position: absolute; */
+    width:10vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 2px;
+    border-radius: 10px;
+    background:rgb(38, 219, 59);
+}
+
+.card-button-update:hover{
+    display: flex;
+    /* position: absolute; */
+    width:10vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 2px;
+    border-radius: 10px;
+    background:rgb(27, 168, 43);
+}
+
+.button-card:hover{
+    display: flex;
+    /* position: absolute; */
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 2px;
+    width: 20%;
+    transition: all 0.5s ease;
+    overflow: hidden;
+    border-radius: 15px;
+    background-image: linear-gradient(
+        to left, rgb(83, 45, 119), rgb(153, 142, 223)
+    );
+}
+
+.card-table{
+    display:flex;
+    /* position: relative; */
+    flex-wrap: wrap;
+    width: 90%;
+    border:1px solid #ddd;
+    border-radius:12px;
+    /* height: 40vh; */
+    margin-left:5%;
+    margin-top: 1%; 
+    justify-content: center;
+    background-color: white;
+    /* margin-bottom:30px;  */
+    margin-bottom:20px;
+}
+
+.card h3{
+    color: #896ee1;
+}
+
+.container-div h2{
+    margin-left: 50px;
+}
+
+.card p{
+    color:#3b5dc2;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 10;
+    font-size: 28pt;   
+}
+
+
+@media screen and(max-width: 768px) {
+ 
+.card{
+    width: calc(50% - 20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* min-width: 170px; */
+    height:30vh;
+}
+   
+}
+
+@media screen and(max-width: 380px) {
+ 
+    .card{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        /* min-width: 170px; */
+        height:30vh;
+    }
+       
+}

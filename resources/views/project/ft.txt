@@ -1,0 +1,19 @@
+<td><i class="fa fa-check-circle-o green"></i><span class="ms-1">Paid</span></td>
+<td><i class="fa fa-dot-circle-o text-danger"></i><span class="ms-1">Failed</span></td>
+
+
+kategori indikator :
+planning
+development
+testing
+debugging
+done
+cancel
+revisi
+
+#tabel visitor
+    $table->id();
+    $table->string('visitor_id')->unique(); // ID unik dari session atau cookie pengunjung
+    $table->ipAddress('ip_address'); // Alamat IP pengunjung
+    $table->string('user_agent')->\nullable(); // Informasi tentang user agent browser
+    $table->timestamps();

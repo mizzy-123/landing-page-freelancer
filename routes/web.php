@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChartController;
+use App\Http\Controllers\ProjekController;
+use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\EmailVerificationNotificationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -22,11 +27,36 @@ Route::get('/', function () {
     return view('landing_page.index');
 });
 
+Route::get('/cb', function () {
+    return view('cb');
+});
+
 // tempat route dashboard disimpan
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return "masuk bang";
     })->name('dashboard');
+
+    Route::get('/project', [ProjekController::class, 'index'])->name('project.index');
+    Route::post('/project', [ProjekController::class, 'store'])->name('project.store');
+    Route::get('/project-delete/{id}', [ProjekController::class, 'destroy'])->name('project.delete');
+    Route::get('/project/{id}', [ProjekController::class, 'edit'])->name('project.edit');
+    Route::post('/project/{id}', [ProjekController::class, 'update'])->name('project.update');
+
+    Route::get('/portofolio', [ArtikelController::class, 'index'])->name('portofolio.index');
+    Route::post('/portofolio', [ArtikelController::class, 'store'])->name('portofolio.store');
+    Route::get('/portofolio/{id}', [ArtikelController::class, 'edit'])->name('portofolio.edit');
+    Route::post('/portofolio/{id}', [ArtikelController::class, 'update'])->name('portofolio.update');
+    Route::get('/portofolio-delete/{id}', [ArtikelController::class, 'destroy'])->name('portofolio.delete');
+
+    Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+    Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
+    Route::get('/category/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::post('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
+    Route::get('/category-delete/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
+
+    Route::get('/', [VisitorController::class, 'index'])->name('visitor.index');
+    Route::get('/daily', [ChartController::class, 'daily_visitor'])->name('chart.dashboard');
 });
 
 Route::middleware('auth')->group(function () {
