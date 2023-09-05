@@ -23,9 +23,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('landing_page.index');
-});
+Route::get('/', [VisitorController::class, 'index'])->name('visitor.index');
 
 Route::get('/cb', function () {
     return view('cb');
@@ -33,9 +31,7 @@ Route::get('/cb', function () {
 
 // tempat route dashboard disimpan
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return "masuk bang";
-    })->name('dashboard');
+    Route::get('/dashboard', [ChartController::class, 'daily_visitor'])->name('dashboard');
 
     Route::get('/project', [ProjekController::class, 'index'])->name('project.index');
     Route::post('/project', [ProjekController::class, 'store'])->name('project.store');
@@ -55,7 +51,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
     Route::get('/category-delete/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
 
-    Route::get('/', [VisitorController::class, 'index'])->name('visitor.index');
     Route::get('/daily', [ChartController::class, 'daily_visitor'])->name('chart.dashboard');
 });
 
