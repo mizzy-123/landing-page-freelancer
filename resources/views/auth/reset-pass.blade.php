@@ -1,4 +1,4 @@
-@extends('login-page.layout.main')
+@extends('auth.layout.main')
 
 @section('title', 'reset')
 
