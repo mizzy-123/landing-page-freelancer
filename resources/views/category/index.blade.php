@@ -85,11 +85,15 @@
       </div>
       <div class="modal-body">
         <div class="container">
-            <form method="POST" action="{{ route('category.store') }}">
+            <form method="POST" action="{{ route('category.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="name">Category Name</label>
-                    <input placeholder="category name" id="name" name="name" class="form-input">
+                    <input type="text" placeholder="category name" id="name" name="name" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label for="name">Gambar</label>
+                  <input type="file" placeholder="Gambar" id="name" name="gambar" class="form-input">
                 </div>
                 
                 <div class="modal-footer">

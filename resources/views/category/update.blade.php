@@ -123,11 +123,15 @@
       </div>
       <div class="modal-body">
         <div class="container">
-            <form method="POST"  action="{{ route('category.update', $category->id) }}">
+            <form method="POST"  action="{{ route('category.update', $category->id) }}" enctype="multipart/form-data">
                 @csrf   
                 <div class="form-group">
                     <label for="name">Category Name</label>
                     <input placeholder="category name" id="name" value="{{ $category->nama }}" name="name" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label for="name">Gambar</label>
+                  <input type="file" placeholder="Gambar" id="name" name="gambar" class="form-input">
                 </div>
                 
                 <div class="modal-footer">

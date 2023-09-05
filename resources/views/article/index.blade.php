@@ -6,6 +6,8 @@
 
 @section('content')
 
+    <h1 class="mb-3 text-center">All post</h1>
+
     <div class="card mb-4">
       <div class="position-absolute px-3 py-2" style="background-color: rgba(0, 0, 0, 0.7);">
         <a href="/blog?category=test" class="text-white text-decoration-none fs-4">Website</a></div>
@@ -90,5 +92,8 @@
         </div>
             
         </div>
+    </div>
+    <div class="d-flex justify-content-end">
+      test
     </div>
 @endsection

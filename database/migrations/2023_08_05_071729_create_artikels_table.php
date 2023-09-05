@@ -16,12 +16,13 @@ return new class extends Migration
         Schema::create('artikels', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
+            $table->string('slug')->unique();
             $table->longText('isi');
             $table->integer('durasi');
             $table->string('tech_stack')->nullable(true);
             $table->string('link')->nullable(true);
             $table->UnsignedBigInteger('id_category');
-            $table->foreign('id_category')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');   
+            $table->foreign('id_category')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

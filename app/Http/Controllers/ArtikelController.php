@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\artikel;
 use App\Models\category;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
@@ -24,7 +25,7 @@ class ArtikelController extends Controller
         $data = $artikel->paginate(5);
         $data2 = $category::all();
         $data_to_update = $artikel::all();
-        return view('portofolio.index', compact(['data', 'data2', 'data_to_update']));     
+        return view('portofolio.index', compact(['data', 'data2', 'data_to_update']));
     }
 
     /**
@@ -46,11 +47,13 @@ class ArtikelController extends Controller
     public function store(Request $req)
     {
         $req->validate([
-        'name' => 'required|string',
-        'durasi' => 'required|int',
-        'link' => 'required|string',
+            'name' => 'required|string',
+            'durasi' => 'required|int',
+            'link' => 'required|string',
         ]);
-    
+
+        $slug = SlugService::createSlug(artikel::class, 'slug', $req->name);
+
         $artikel = new artikel();
 
         $artikel->judul = $req->name;
@@ -59,6 +62,7 @@ class ArtikelController extends Controller
         $artikel->tech_stack = $req->teknologi;
         $artikel->id_category = $req->category;
         $artikel->isi = $req->isi;
+        $artikel->slug = $slug;
 
         // print_r(
         //     [    
@@ -69,8 +73,7 @@ class ArtikelController extends Controller
         //     $req->isi]);
 
         $artikel->save();
-        return redirect('/portofolio');           
-
+        return redirect('/portofolio');
     }
 
     /**
@@ -81,7 +84,6 @@ class ArtikelController extends Controller
      */
     public function show(artikel $artikel)
     {
-        
     }
 
     /**
@@ -110,9 +112,9 @@ class ArtikelController extends Controller
     public function update(Request $req, $id)
     {
         $req->validate([
-        'name' => 'required|string',
-        'durasi' => 'required|int',
-        'link' => 'required|string',
+            'name' => 'required|string',
+            'durasi' => 'required|int',
+            'link' => 'required|string',
         ]);
 
         $artikel = artikel::find($id);
@@ -134,10 +136,10 @@ class ArtikelController extends Controller
         //     ]);
 
         $artikel->save();
-        
-       
+
+
         return redirect('/portofolio')->with('success', 'data berhasil diupdate');
-    }   
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -150,9 +152,8 @@ class ArtikelController extends Controller
         $data_id = $id;
         artikel::where('id', $data_id)->delete();
 
-        
+
         // print_r($data_id);
         return redirect('/portofolio')->with('success', 'data berhasil dihapus');
     }
-
 }
