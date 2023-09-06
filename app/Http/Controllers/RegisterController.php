@@ -21,17 +21,22 @@ class RegisterController extends Controller
         $validated = $request->validate([
             "name" => "required|string",
             "email" => "required|string|email:dns|unique:users",
-            "password" => ['required', 'confirmed', Rules\Password::defaults()]
+            "password" => ['required', 'confirmed', Rules\Password::defaults()],
+            "token" => "required"
         ]);
 
-        $validated['password'] = Hash::make($validated['password']);
+        if ($request->token == 'S$wZcS9EOYor') {
+            $validated['password'] = Hash::make($validated['password']);
 
-        $user = User::create($validated);
+            $user = User::create($validated);
 
-        event(new Registered($user));
+            event(new Registered($user));
 
-        Auth::login($user);
+            Auth::login($user);
 
-        return redirect(route('verification.notice'))->with('verif', 'verifikasi email telah dikirim');
+            return redirect(route('verification.notice'))->with('verif', 'verifikasi email telah dikirim');
+        } else {
+            return back()->withErrors('Invalid token');
+        }
     }
 }
