@@ -78,7 +78,7 @@ return [
     */
 
     'links' => [
-        public_path('storage') => base_path('../manifestasi.my.id'),
+        base_path('../manifestasi.my.id') => storage_path('app/public'),
         // public_path('storage') => storage_path('app/public'),
     ],
 
