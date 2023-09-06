@@ -99,6 +99,9 @@
 
                     <a onclick="return confirm('Anda yakin ingin menghapus data ini ?')" class="card-button-delete" style="text-decoration: none;color:white;" href="{{ route('portofolio.delete', $j->id) }}">
                     <i class="bx bx-trash"></i></a>
+
+                    <a class="card-button-delete bg-warning" style="text-decoration: none;color:white;" href="{{ route('send', $j->id) }}">
+                      <i class='bx bx-send'></i></a>
                     
                     </div>
                   </td>
@@ -165,6 +168,11 @@
                 <div class="form-group">
                     <label for="name">Nama Client</label>
                     <input type="text" value="{{ $projek->nama_client }}" placeholder="nama client" id="client" name="client" class="form-input">
+                </div>
+
+                <div class="form-group">
+                  <label for="name">Nomor whatsapp</label>
+                  <input type="number" placeholder="nomor whatsapp" id="client" name="telepon" class="form-input" value="{{ $projek->telepon }}" required>
                 </div>
 
                 @php

@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
@@ -53,6 +54,13 @@
          <span class="links_name">Category</span>
        </a>
        <span class="tooltip">Category</span>
+     </li>
+     <li>
+       <a href="{{ route('scan') }}">
+         <i class='bx bx-qr-scan' ></i>
+         <span class="links_name">Scan</span>
+       </a>
+        <span class="tooltip">Scan</span>
      </li>
      <li>
        <a href="#">

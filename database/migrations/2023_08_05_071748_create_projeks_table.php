@@ -20,14 +20,15 @@ return new class extends Migration
             $table->BigInteger('fee');
             $table->datetime('deadline');
             $table->string('nama_client');
-            $table->text('note')->nullable(true);    
+            $table->string('telepon');
+            $table->text('note')->nullable(true);
             $table->UnsignedBigInteger('id_category');
             $table->foreign('id_category')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
 
-  
+
 
 
     /**

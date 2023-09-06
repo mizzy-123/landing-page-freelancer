@@ -5,6 +5,7 @@ use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\ProjekController;
+use App\Http\Controllers\ScanController;
 use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\EmailVerificationNotificationController;
 use App\Http\Controllers\LoginController;
@@ -32,7 +33,7 @@ Route::get('/cb', function () {
 });
 
 // tempat route dashboard disimpan
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware('guest')->group(function () {
     Route::get('/dashboard', [ChartController::class, 'daily_visitor'])->name('dashboard');
 
     Route::get('/project', [ProjekController::class, 'index'])->name('project.index');
@@ -54,6 +55,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/category-delete/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
 
     Route::get('/daily', [ChartController::class, 'daily_visitor'])->name('chart.dashboard');
+
+    Route::get('/scan', [ScanController::class, 'index'])->name('scan');
+    Route::get('/disconnect', [ScanController::class, 'disconnect'])->name('disconnect');
+    Route::get('/statuswa', [ScanController::class, 'status']);
+    Route::get('/send/{projek}', [ScanController::class, 'send'])->name('send');
 });
 
 Route::middleware('auth')->group(function () {

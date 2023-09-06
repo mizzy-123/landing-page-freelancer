@@ -30,8 +30,7 @@ class ProjekController extends Controller
             "cancel",
             "revisi"
         ];
-        return view('project.index', compact('data','data2' ,'data_paginate', 'status_indikator'));
-    
+        return view('project.index', compact('data', 'data2', 'data_paginate', 'status_indikator'));
     }
 
     /**
@@ -61,6 +60,21 @@ class ProjekController extends Controller
             "category" => "required|string",
         ]);
 
+        $phoneNumber = $req->telepon;
+        $pattern = '#^(\\+62|0)\\d{9,12}$#';
+        if (preg_match($pattern, $phoneNumber)) {
+            if (substr($phoneNumber, 0, 1) === '0') {
+                $modifiedPhoneNumber = '62' . substr($phoneNumber, 1);
+                $phoneNumber = $modifiedPhoneNumber;
+            } else if (substr($phoneNumber, 0, 1) === '+') {
+                $modifiedPhoneNumber = '62' . substr($phoneNumber, 1);
+                $phoneNumber = $modifiedPhoneNumber;
+            }
+            // return $phoneNumber;
+        } else {
+            return back()->withErrors("Nomor tidak valid")->withInput();
+        }
+
         $projek = new projek();
         // print_r([
         //     $req->name,
@@ -81,9 +95,12 @@ class ProjekController extends Controller
         //           <td>{{ $data2->where('id',$j->id_category)->first()->nama }}</td>
         //           <td>{{ $j->note }}</td>
         //            --}}
-        $jumlah = explode("Rp ", $req->biaya);
-        $jumlah_t = explode(".", $jumlah[1]);
-        $fee = $jumlah_t[0] . $jumlah_t[1];
+        // $jumlah = explode("Rp ", $req->biaya);
+        // $jumlah_t = explode(".", $jumlah[1]);
+        // $fee = $jumlah_t[0] . $jumlah_t[1];
+        $jumlah = str_replace("Rp ", "", $req->biaya); // Menghapus "Rp "
+        $jumlah = str_replace(".", "", $jumlah); // Menghapus titik (.)
+        $fee = (int)$jumlah; // Mengkonversi ke tipe integer
 
         $projek->nama = $req->name;
         $projek->status = $req->status;
@@ -92,9 +109,9 @@ class ProjekController extends Controller
         $projek->fee = intval($fee);
         $projek->id_category = $req->category;
         $projek->note = $req->note;
+        $projek->telepon = $phoneNumber;
         $projek->save();
-        return redirect('project')->with('success', 'Data successfully saved'); 
-        
+        return redirect('project')->with('success', 'Data successfully saved');
     }
 
     /**
@@ -129,7 +146,7 @@ class ProjekController extends Controller
             "cancel",
             "revisi"
         ];
-        return view("project.update", compact('projek','data','data2' ,'data_paginate', 'status_indikator'));
+        return view("project.update", compact('projek', 'data', 'data2', 'data_paginate', 'status_indikator'));
     }
 
     /**
@@ -141,7 +158,7 @@ class ProjekController extends Controller
      */
     public function update(Request $req, $id)
     {
-     $req->validate([
+        $req->validate([
             "name" => "required|string",
             "status" => "required|string",
             "deadline" => "required|date",
@@ -150,12 +167,30 @@ class ProjekController extends Controller
             "category" => "required|string",
         ]);
 
-        $jumlah = explode("Rp ", $req->biaya);
-        $jumlah_t = explode(".", $jumlah[1]);
-        $fee = $jumlah_t[0] . $jumlah_t[1];
+        $phoneNumber = $req->telepon;
+        $pattern = '#^(\\+62|0|62)\\d{9,12}$#';
+        if (preg_match($pattern, $phoneNumber)) {
+            if (substr($phoneNumber, 0, 1) === '0') {
+                $modifiedPhoneNumber = '62' . substr($phoneNumber, 1);
+                $phoneNumber = $modifiedPhoneNumber;
+            } else if (substr($phoneNumber, 0, 1) === '+') {
+                $modifiedPhoneNumber = '62' . substr($phoneNumber, 1);
+                $phoneNumber = $modifiedPhoneNumber;
+            }
+            // return $phoneNumber;
+        } else {
+            return back()->withErrors("Nomor tidak valid")->withInput();
+        }
+
+        // $jumlah = explode("Rp ", $req->biaya);
+        // $jumlah_t = explode(".", $jumlah[1]);
+        // $fee = $jumlah_t[0] . $jumlah_t[1];
+        $jumlah = str_replace("Rp ", "", $req->biaya); // Menghapus "Rp "
+        $jumlah = str_replace(".", "", $jumlah); // Menghapus titik (.)
+        $fee = (int)$jumlah; // Mengkonversi ke tipe integer
 
         $projek = projek::find($id);
-        
+
         $projek->nama = $req->name;
         $projek->status = $req->status;
         $projek->deadline = $req->deadline;
@@ -163,6 +198,7 @@ class ProjekController extends Controller
         $projek->fee = $fee;
         $projek->id_category = $req->category;
         $projek->note = $req->note;
+        $projek->telepon = $phoneNumber;
         $projek->save();
         // print_r([
         //     $projek->nama,
@@ -174,9 +210,7 @@ class ProjekController extends Controller
         //     $projek->note
         // ]            
         // );
-        return redirect('project')->with('success', 'Data successfully updated'); 
-
-
+        return redirect('project')->with('success', 'Data successfully updated');
     }
 
     /**
