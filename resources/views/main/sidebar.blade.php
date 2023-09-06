@@ -4,9 +4,9 @@
   <head>
     <meta charset="UTF-8">
     <title>Manifestasi Admin</title>
-    <link rel="stylesheet" href="{{ url('css/sidebarstyle.css') }}">
-    <link rel="stylesheet" href="{{ url('css/cardstyle.css') }}">
-    <link rel="stylesheet" href="{{ url('css/tablestyle.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sidebarstyle.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/cardstyle.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/tablestyle.css') }}">
     <link rel="stylesheet" href="{{ url('css/formstyle.css') }}">
     {{-- <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{ asset('summernote/summernote-lite.css') }}">
