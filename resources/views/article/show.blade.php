@@ -16,7 +16,7 @@
 
             <img src="https://source.unsplash.com/1200x400?programming" alt="" class="img-fluid"> --}}
 
-            <article class="my-3 fs-3" style="word-wrap: break-word;">
+            <article class="my-3 fs-3" style="word-wrap: break-word;" id="article">
                 {!! $article->isi !!}
             </article>
 
@@ -50,5 +50,9 @@
         </div>
     </div>
 </div>
+
+@push('js')
+    <script src="{{ asset('js/article_detail.js') }}"></script>
+@endpush
     
 @endsection
