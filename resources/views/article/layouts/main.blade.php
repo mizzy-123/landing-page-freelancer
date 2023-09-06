@@ -48,5 +48,6 @@
 
     <!-- custom js -->
     <script src="{{ asset('js/articlescript.js') }}"></script>
+    @stack('js')
   </body>
 </html>

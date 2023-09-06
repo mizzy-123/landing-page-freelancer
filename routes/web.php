@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleDetailController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChartController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\ProjekController;
 use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\EmailVerificationNotificationController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PostArticleController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -98,13 +100,9 @@ Route::middleware('guest')->group(function () {
     Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 });
 
-Route::get('/article', function () {
-    return view('article.index');
-});
+Route::get('/article', [PostArticleController::class, 'index']);
 
-Route::get('/show', function () {
-    return view('article.show');
-});
+Route::get('/show/{artikel:slug}', [ArticleDetailController::class, 'index']);
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/dashboard', function () {
