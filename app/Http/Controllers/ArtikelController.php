@@ -57,6 +57,7 @@ class ArtikelController extends Controller
         $artikel->durasi = $req->durasi;
         $artikel->link = $req->link;
         $artikel->tech_stack = $req->teknologi;
+        $artikel->contributors = $req->contributor;
         $artikel->id_category = $req->category;
         $artikel->isi = $req->isi;
 
@@ -98,6 +99,7 @@ class ArtikelController extends Controller
         $data2 = $category->paginate(5);
         $data_to_update = artikel::where('id', $id)->first();
         return view('portofolio.update', compact('data_to_update', 'data', 'data2'));
+        
     }
 
     /**
@@ -120,6 +122,7 @@ class ArtikelController extends Controller
         $artikel->durasi = $req->durasi;
         $artikel->link = $req->link;
         $artikel->tech_stack = $req->teknologi;
+        $artikel->contributors = $req->contributor;
         $artikel->id_category = $req->category;
         $artikel->isi = $req->isi_update;
 
