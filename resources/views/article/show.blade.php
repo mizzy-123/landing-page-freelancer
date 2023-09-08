@@ -36,7 +36,7 @@
                     <p><span>Lama pengerjaan : </span> {{ $article->durasi }} hari</p>
                 </li>
                 <li><p><span>Link : </span> <a href="{{ $article->link != null? $article->link : '#' }}">{{ $article->link != null? $article->link : '' }}</a></p></li>
-                {{-- <li><p><span>Contribution : </span> asdfasfsadf</p></li> --}}
+                <li><p><span>Contributor : </span> {{ $article->contributors }}</p></li>
             </ul>
 
             <div class="custom-box">
