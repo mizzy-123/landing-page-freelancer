@@ -187,6 +187,12 @@
                 <label for="tag-input">Tech Stack</label>
                     <span><p style="color:rgb(164, 160, 160);font-size:12px;">*pisahkan dengan (,)</p></span>
                     <input type="text" name="teknologi" class="form-input" value="{{ ($data_to_update != null) ? $data_to_update->tech_stack : '' }}" placeholder="e.g php,laravel"  id="tag-input" />
+                </div>
+
+                <div class="form-group">
+                <label for="tag-input">Kontributor</label>
+                    <span><p style="color:rgb(164, 160, 160);font-size:12px;">*pisahkan dengan (,)</p></span>
+                    <input type="text" name="contributor" class="form-input" placeholder="nama kontributor"  id="tag-input"/>
                 </div>    
                                     
                 <div class="form-group">

@@ -1,5 +1,6 @@
 @extends('main.sidebar')
 @section('container')
+
     <div class="container-div">
         <h2 style="color:white;">Data Portofolio</h2>
         <div class="container-row">
@@ -15,13 +16,8 @@
           <p><a href="#" style="text-decoration: none;color:white;">Tambah</a></p>
         </button>
 
-{{-- <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button> --}}
 
-</div>
-     
+  </div>     
         <div class="card-table">
             <div class="container mt-3 px-2">
                 <div class="mb-2 d-flex justify-content-between align-items-center">
@@ -57,6 +53,7 @@
                     <tr class="bg-light">
                       <th scope="col" width="5%">Name</th>
                       <th scope="col" width="10%">Tech Stack</th>
+                      <th scope="col" width="10%">Kontributor</th>
                       <th scope="col" width="20%">Link</th>
                       <th scope="col" width="20%">Durasi (hari)</th>
                       <th scope="col" width="20%">Category</th>
@@ -69,6 +66,7 @@
                 <tr>
                   <td>{{ $j->judul }}</td>
                   <td>{{ $j->tech_stack }}</td>
+                  <td>{{ $j->contributors }}</td>
                   <td><a href="{{ $j->link }}" style="text-decoration: none;">{{ $j->link }}</a></td>
                   <td>{{ $j->durasi }} Hari</td>
                   <td>{{ $data2->where('id',$j->id_category)->first()->nama }}</td>
@@ -115,12 +113,19 @@
                     <label for="name">Name</label>
                     <input placeholder="project name" id="name" name="name" class="form-input">
                 </div>
+                
                 <div class="form-group">
                 <label for="tag-input">Tech Stack</label>
                     <span><p style="color:rgb(164, 160, 160);font-size:12px;">*pisahkan dengan (,)</p></span>
                     <input type="text" name="teknologi" class="form-input" placeholder="e.g php,laravel"  id="tag-input"/>
                 </div>    
-                                    
+
+                <div class="form-group">
+                <label for="tag-input">Kontributor</label>
+                    <span><p style="color:rgb(164, 160, 160);font-size:12px;">*pisahkan dengan (,)</p></span>
+                    <input type="text" name="contributor" class="form-input" placeholder="nama kontributor"  id="tag-input"/>
+                </div>
+
                 <div class="form-group">
                     <label for="name">Category</label>
                     {{-- <input placeholder="project category" id="name" name="category" class="form-input"> --}}
@@ -177,7 +182,7 @@
          </a>
       </div>
       <div class="modal-body">
-        <div class="container">
+        <div class="container">ini adalah
             <form method="POST" id="form_update" action="{{ route('portofolio.update', $data_to_update->id) }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
@@ -192,6 +197,12 @@
                 <label for="tag-input">Tech Stack</label>
                     <span><p style="color:rgb(164, 160, 160);font-size:12px;">*pisahkan dengan (,)</p></span>
                     <input type="text" name="teknologi" class="form-input" value="{{ ($data_to_update != null) ? $data_to_update->tech_stack : '' }}" placeholder="e.g php,laravel"  id="tag-input" />
+                </div>
+                
+                <div class="form-group">
+                <label for="tag-input">Kontributor</label>
+                    <span><p style="color:rgb(164, 160, 160);font-size:12px;">*pisahkan dengan (,)</p></span>
+                    <input type="text" name="contributor" value="{{ $data_to_update->contributors }}" class="form-input" placeholder="nama kontributor"  id="tag-input"/>
                 </div>    
                                     
                 <div class="form-group">

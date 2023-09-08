@@ -59,6 +59,7 @@
                       {{-- <th scope="col" width="5%"></th> --}}
                       <th scope="col" width="5%">Name</th>
                       <th scope="col" width="10%">Tech Stack</th>
+                      <th scope="col" width="10%">Kontributor</th>
                       <th scope="col" width="20%">Link</th>
                       <th scope="col" width="5%">Durasi (hari)</th>
                       <th scope="col" width="10%">Category</th>
@@ -73,6 +74,7 @@
                   {{-- <th scope="row"><input class="form-check-input" value="{{ $j->id }}" name="id[{{ $j->id }}]" id="checkItem" type="checkbox"></th> --}}
                   <td>{{ $j->judul }}</td>
                   <td>{{ $j->tech_stack }}</td>
+                  <td>{{ $j->contributors }}</td>
                   <td><a href="{{ $j->link }}" style="text-decoration: none;">{{ $j->link }}</a></td>
                   <td>{{ $j->durasi }} Hari</td>
                   <td>{{ $data2->where('id',$j->id_category)->first()->nama }}</td>
@@ -99,13 +101,7 @@
             </table>
             {!! $data->withQueryString()->links('pagination::bootstrap-5') !!}
             </div>
-            {{-- <div class="container" style="justify-content: end; align-items:center;display:flex;">
-                  <div class="card-button-delete" style="margin-bottom:10px;height:8vh;" >
-                      <input  type="submit" >
-                      <i class='bx bx-trash' style="color:white"></i>
-                  </div>
-              </div>
-            </form> --}}
+            
               
             </div>
         </div>
@@ -140,6 +136,12 @@
                 <label for="tag-input">Tech Stack</label>
                     <span><p style="color:rgb(164, 160, 160);font-size:12px;">*pisahkan dengan (,)</p></span>
                     <input type="text" name="teknologi" class="form-input" placeholder="e.g php,laravel"  id="tag-input"/>
+                </div>    
+                
+                <div class="form-group">
+                <label for="tag-input">Kontributor</label>
+                    <span><p style="color:rgb(164, 160, 160);font-size:12px;">*pisahkan dengan (,)</p></span>
+                    <input type="text" name="contributor" class="form-input" placeholder="nama kontributor"  id="tag-input"/>
                 </div>    
                                     
                 <div class="form-group">
