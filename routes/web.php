@@ -12,6 +12,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostArticleController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Models\category;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +27,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [VisitorController::class, 'index'])->name('visitor.index');
+// Route::get('/', [VisitorController::class, 'index'])->name('visitor.index');
+
+Route::get('/', function () {
+    $categories = category::all();
+
+    return view('landing_page.index', [
+        'categories' => $categories,
+    ]);
+});
 
 Route::get('/cb', function () {
     return view('cb');
