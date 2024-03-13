@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Manifestasi</title>
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+
     <!-- swiper css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 
@@ -14,12 +17,14 @@
 
     <!-- custom css -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/chatstyle.css') }}" />
   </head>
 
   <body>
     <!-- header design -->
     <header class="header">
-      <a href="#" class="logo">Manifestasi</a>
+      {{-- <a href="#" class="logo">Manifestasi</a> --}}
+      <img class="logo" src="{{ asset('images/manifestasi2.png') }}" width="200"/>
 
       <nav class="navbar">
         <a href="#home" class="active">Home</a>
@@ -34,6 +39,32 @@
       <div class="bx bx-menu" id="menu-icon"></div>
     </header>
     <!-- home section design -->
+
+    <button class="chatbot-toggler">
+      <span class="material-symbols-rounded">mode_comment</span>
+      <span class="material-symbols-outlined">close</span>
+    </button>
+    <div class="chatbot">
+      <div class="header-chat">
+        <h2>Assistant</h2>
+        <span class="close-btn material-symbols-outlined">close</span>
+      </div>
+      <ul class="chatbox">
+        <li class="chat incoming">
+          <span class="material-symbols-outlined">smart_toy</span>
+          <p>Hi terima kasih sudah berkunjung<br>1. Apa itu manifestasi<br>2. Layanan apa yang dapat kita berikan<br>3. Ingin konsultasi?<br><br>pilih angka 1 sampai 3
+          </p>
+        </li>
+        {{-- <li class="chat outgoing">
+          <span class="material-symbols-outlined">smart_toy</span>
+          <p>Helo</p>
+        </li> --}}
+      </ul>
+      <div class="chat-input">
+        <textarea placeholder="Enter a message..." spellcheck="false" required></textarea>
+        <span id="send-btn" class="material-symbols-rounded">send</span>
+      </div>
+    </div>
 
     
     <section class="home" id="home">
@@ -125,14 +156,14 @@
 
     <div class="price">
       <h2 class="heading">Tertarik dengan penawaran <span> Kami?</span></h2>
-      <h3 class="heading">Harga mulai <span>Rp.100.000 !!</span></h3>
+      {{-- <h3 class="heading">Harga mulai <span>Rp.100.000 !!</span></h3> --}}
       <div class="price-container">
         <div class="price-card">
           <a href="https://wa.link/3rhcme" class="btn-logo">
             <i class="bx bxl-whatsapp"></i>
             <p>Konsultasikan sekarang</p>
           </a>
-          <p class="note">harga belum termasuk biaya hosting dll</p>
+          {{-- <p class="note">harga belum termasuk biaya hosting dll</p> --}}
         </div>
       </div>
     </div>
@@ -182,27 +213,24 @@
         <div class="testimonial-box mySwiper">
           <div class="testimonial-content swiper-wrapper">
             <div class="testimonial-slide swiper-slide">
-              <img src="{{ asset('images/testimonial1.jpg') }}" alt="" />
-              <h3>Lorem, ipsum dolor.</h3>
+              <img src="{{ asset('images/ilham.JPG') }}" alt="" />
+              <h3>Ilham</h3>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus excepturi vitae, ratione possimus natus obcaecati tempora omnis magnam distinctio ullam rerum hic reiciendis similique molestiae modi repudiandae eos quos
-                fuga.
+                Pelayanan jasanya bagus, orangnya ramah bintang 5 lah pokoknya
               </p>
             </div>
             <div class="testimonial-slide swiper-slide">
-              <img src="{{ asset('images/testimonial2.jpg') }}" alt="" />
-              <h3>Lorem, ipsum dolor.</h3>
+              <img src="{{ asset('images/naufal.jpg') }}" alt="" />
+              <h3>Naufal</h3>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus excepturi vitae, ratione possimus natus obcaecati tempora omnis magnam distinctio ullam rerum hic reiciendis similique molestiae modi repudiandae eos quos
-                fuga.
+                Hasilnya bagus sesuai selera, rekomended 
               </p>
             </div>
             <div class="testimonial-slide swiper-slide">
-              <img src="{{ asset('images/testimonial3.jpg') }}" alt="" />
-              <h3>Lorem, ipsum dolor.</h3>
+              <img src="{{ asset('images/eka.png') }}" alt="" />
+              <h3>Eka</h3>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus excepturi vitae, ratione possimus natus obcaecati tempora omnis magnam distinctio ullam rerum hic reiciendis similique molestiae modi repudiandae eos quos
-                fuga.
+                Kinerja bagus, fast respon
               </p>
             </div>
           </div>
@@ -236,6 +264,149 @@
     <!-- custom js -->
     <script src="{{ asset('js/script.js') }}"></script>
 
+    <script>
+      // Chat
+const chatbotToggler = document.querySelector(".chatbot-toggler");
+const closeBtn = document.querySelector(".close-btn");
+const closeBtnBox = document.querySelector(".chatbot .header-chat span");
+const chatbox = document.querySelector(".chatbox");
+const chatInput = document.querySelector(".chat-input textarea");
+const sendChatBtn = document.querySelector(".chat-input span");
 
+const inputInitHeight = chatInput.scrollHeight;
+let userMessage;
+let step = 0;
+
+// Chat
+
+const createChatLi = (message, className) => {
+    // Create a chat <li> element with passed message and className
+    const chatLi = document.createElement("li");
+    chatLi.classList.add("chat", `${className}`);
+    let chatContent =
+        className === "outgoing"
+            ? `<p></p>`
+            : `<span class="material-symbols-outlined">smart_toy</span><p></p>`;
+    chatLi.innerHTML = chatContent;
+    chatLi.querySelector("p").textContent = message;
+    return chatLi; // return chat <li> element
+};
+
+const generateResponse = (chatElement, userMessage) => {
+    // Tambahkan userMessage sebagai parameter di fungsi generateResponse
+    const messageElement = chatElement.querySelector("p");
+    if (userMessage !== null || userMessage !== undefined) {
+        if (userMessage == "1") {
+            messageElement.textContent = `Kami adalah perusahaan yang bergerak di bidang inovasi dan teknologi, yang terus berinovasi untuk kebutuhan masyarakat, seperti layanan Jasa pembuatan teknologi, layanan pemberi lapangan kerja dll, dan juga ide kami ingin membuat komunitasi yang berkomitmen sesuai  jalur atau arah visi misi perjuangan perusahaan`;
+        } else if (userMessage == "2") {
+            messageElement.textContent = `1. Website
+            Kita akan membuatkan anda, atau membangun bisnis anda berupa website yang modern, baik itu website landing page, company profile, bio link, toko online dll sesuai request anda
+
+2. Aplikasi
+            Kita akan membuatkan anda, atau membangun bisnis anda berupa aplikasi mobile, baik itu android ataupun ios, sesuai dengan request anda
+
+3. Designer
+            Kita akan mendesign bisnis dan produk anda mulai dari design website, design aplikasi, design logo dll sesuai request anda`;
+        } else if (userMessage == "3") {
+            messageElement.textContent = `Masukkan no WA(Whatssapp) anda`;
+        } else {
+            if (userMessage.length >= 11 && userMessage.startsWith("0")) {
+                let cleanedPhoneNumber = userMessage.replace(/\D/g, "");
+                cleanedPhoneNumber = "62" + cleanedPhoneNumber.slice(1);
+
+                // Data yang akan dikirim dalam body
+                const requestBody = {
+                    session: "{{ env('SESSION') }}",
+                    to: `${cleanedPhoneNumber}`,
+                    text: "Terima kasih sudah berkunjung di manifestasi\n adakah yang bisa saya bantu",
+                    key: "{{ env('KEY') }}"
+                };
+
+                // URL endpoint API
+                const url = "{{ env('API_URL_WHATSSAPP') }}";
+
+                // Membuat objek untuk konfigurasi permintaan
+                const requestOptions = {
+                    method: "GET", // Metode permintaan
+                    headers: {
+                        "Content-Type": "application/json",
+                        "key": "{{ env('KEY') }}" // Header untuk menentukan tipe konten JSON
+                    },
+                    // Mengubah objek requestBody menjadi string JSON dan menyematkannya ke dalam URL sebagai query string
+                    // Jangan lupa untuk mengonversi nilai-nilai query string yang bersifat spesial (seperti spasi) menjadi bentuk yang sesuai (misalnya menggunakan encodeURIComponent)
+                    // Misalnya: `${url}?session=${encodeURIComponent(requestBody.session)}&to=${encodeURIComponent(requestBody.to)}&text=${encodeURIComponent(requestBody.text)}`
+                    // Berikut ini adalah contoh tanpa menggunakan encodeURIComponent untuk kejelasan saja.
+                    // body: JSON.stringify(requestBody),
+                };
+
+                // Melakukan permintaan fetch
+                fetch(
+                    `${url}send-message?session=${requestBody.session}&to=${requestBody.to}&text=${requestBody.text}`, requestOptions).then((response) => {
+                        // Memeriksa apakah respons yang diterima adalah OK (kode status 200)
+                        if (response.ok) {
+                            messageElement.textContent =
+                                "Pesan sudah dikirim ke WA (Whatssapp anda)";
+                        } else {
+                            messageElement.textContent =
+                                "masuk tapi error";
+                        }
+                    }).then((data) => {
+                        // Menangani data respons yang diterima
+                        console.log("Respon dari API:", data);
+                    }).catch((error) => {
+                        // Menangani kesalahan
+                        console.error("Kesalahan:", error);
+                        messageElement.textContent = `${error.message}`;
+                    });
+            } else {
+                messageElement.innerHTML = `Hi terima kasih sudah berkunjung<br>1. Apa itu manifestasi<br>2. Layanan apa yang dapat kita berikan<br>3. Ingin konsultasi?<br><br>pilih angka 1 sampai 3`;
+            }
+        }
+    }
+};
+
+const handleChat = () => {
+    userMessage = chatInput.value.trim(); // Dapatkan pesan pengguna dari input
+    if (!userMessage) return;
+    // Clear the input textarea and set its height to default
+    chatInput.value = "";
+    chatInput.style.height = `${inputInitHeight}px`;
+    // Append the user's message to the chatbox
+    chatbox.appendChild(createChatLi(userMessage, "outgoing"));
+    chatbox.scrollTo(0, chatbox.scrollHeight);
+
+    setTimeout(() => {
+        // Display "Thinking..." message while waiting for the response
+        const incomingChatLi = createChatLi("Thinking...", "incoming");
+        chatbox.appendChild(incomingChatLi);
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+        generateResponse(incomingChatLi, userMessage); // Teruskan userMessage ke dalam generateResponse
+    }, 600);
+};
+
+chatInput.addEventListener("input", () => {
+    // Adjust the height of the input textarea based on its content
+    chatInput.style.height = `${inputInitHeight}px`;
+    chatInput.style.height = `${chatInput.scrollHeight}px`;
+});
+chatInput.addEventListener("keydown", (e) => {
+    // If Enter key is pressed without Shift key and the window
+    // width is greater than 800px, handle the chat
+    if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 800) {
+        e.preventDefault();
+        handleChat();
+    }
+});
+
+chatbotToggler.addEventListener("click", () =>
+    document.body.classList.toggle("show-chatbot")
+);
+
+closeBtnBox.addEventListener("click", () => {
+    document.body.classList.toggle("show-chatbot");
+});
+
+sendChatBtn.addEventListener("click", handleChat);
+    </script>
   </body>
 </html>
