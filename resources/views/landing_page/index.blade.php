@@ -76,7 +76,7 @@
         <div class="social-media">
           <a href="#"><i class="bx bxl-facebook"></i></a>
           <a href="#"><i class="bx bxl-twitter"></i></a>
-          <a href="#"><i class="bx bxl-instagram-alt"></i></a>
+          <a href="https://www.instagram.com/manifestasi_tech"><i class="bx bxl-instagram-alt"></i></a>
           <a href="#"><i class="bx bxl-linkedin"></i></a>
         </div>
         <a href="https://wa.link/3rhcme" class="btn-logo">
