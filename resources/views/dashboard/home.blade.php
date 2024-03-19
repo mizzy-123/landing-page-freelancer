@@ -5,7 +5,7 @@
       <div class="container-row">
           <div class="container" style="max-width:50%;max-height:120%;display:flex;flex-wrap:wrap;background:whitesmoke;border-radius:10px;">
           {{-- <canvas id="myChart"></canvas> --}}
-          <div id="chart-profile-visits"></div>
+          <div id="chart-profile-visits" style="width: 100%"></div>
           </div>
           {{-- <div class="container" style="max-width:50%;max-height:120%;display:flex;flex-wrap:wrap;background:whitesmoke;border-radius:10px;">
           <canvas id="myChart2"></canvas>
