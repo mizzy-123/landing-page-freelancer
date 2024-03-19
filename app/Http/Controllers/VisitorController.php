@@ -15,7 +15,7 @@ class VisitorController extends Controller
 {
     public function getVisitorData()
     {
-        $visitors = Visitor::orderBy('visit_date')->get();
+        $visitors = Avisitor::orderBy('visit_date')->get();
         $chartData = $visitors->pluck('visitor_count');
         $categories = $visitors->pluck('visit_date');
         return response()->json([
