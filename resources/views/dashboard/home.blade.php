@@ -4,7 +4,8 @@
       <h2 style="color:white;">Dashboard</h2>
       <div class="container-row">
           <div class="container" style="max-width:50%;max-height:120%;display:flex;flex-wrap:wrap;background:whitesmoke;border-radius:10px;">
-          <canvas id="myChart"></canvas>
+          {{-- <canvas id="myChart"></canvas> --}}
+          <div id="chart-profile-visits"></div>
           </div>
           {{-- <div class="container" style="max-width:50%;max-height:120%;display:flex;flex-wrap:wrap;background:whitesmoke;border-radius:10px;">
           <canvas id="myChart2"></canvas>
@@ -18,8 +19,37 @@
 @endsection
 
 @section('library')
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
+  fetch('/visitor-data')
+      .then(response => response.json())
+      .then(data => {
+          const chartData = data.chartData;
+          const categories = data.categories;
+
+          // Inisialisasi grafik ApexCharts
+          const options = {
+              chart: {
+                  type: 'line',
+                  height: 350
+              },
+              series: [
+                  {
+                      name: 'Visitor Count',
+                      data: chartData
+                  }
+              ],
+              xaxis: {
+                  categories: categories
+              }
+          };
+
+          const chart = new ApexCharts(document.querySelector("#chart-profile-visits"), options);
+          chart.render();
+      });
+</script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> --}}
+{{-- <script>
     var ctx = document.getElementById('myChart').getContext('2d');
     // var ctx2 = document.getElementById('myChart2').getContext('2d');
     // var ctx2 = document.getElementById('projectChart').getContext('2d');
@@ -91,5 +121,5 @@
     //   options: options
     // });
 
-  </script>
+  </script> --}}
 @endsection

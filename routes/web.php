@@ -27,15 +27,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', [VisitorController::class, 'index'])->name('visitor.index');
+Route::get('/', [VisitorController::class, 'index'])->name('visitor.index');
 
-Route::get('/', function () {
-    $categories = category::all();
+// Route::get('/', function () {
+//     $categories = category::all();
 
-    return view('landing_page.index', [
-        'categories' => $categories,
-    ]);
-});
+//     return view('landing_page.index', [
+//         'categories' => $categories,
+//     ]);
+// });
 
 Route::get('/cb', function () {
     return view('cb');
@@ -87,6 +87,7 @@ Route::middleware('auth')->group(function () {
         ->middleware('throttle:6,60')->name('verification.send');
 
     Route::get('/logout', [LoginController::class, 'destroy'])->name('logout');
+    Route::get('/visitor-data', [VisitorController::class, 'getVisitorData']);
 });
 
 
