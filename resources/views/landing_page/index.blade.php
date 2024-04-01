@@ -348,7 +348,7 @@ const generateResponse = (chatElement, userMessage) => {
                                 "Pesan sudah dikirim ke WA (Whatssapp anda)";
                         } else {
                             messageElement.textContent =
-                                "masuk tapi error";
+                                "Oops coba ulangi lagi";
                         }
                     }).then((data) => {
                         // Menangani data respons yang diterima
