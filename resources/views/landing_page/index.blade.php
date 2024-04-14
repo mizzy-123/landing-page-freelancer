@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="title" content="Jasa website, aplikasi, dan design dengan harga terjangkau. Konsultasikan sekarang juga">
+    <meta name="description" content="Optimalkan potensi digital bisnis Anda dengan layanan terbaik dalam pengembangan website, aplikasi, dan desain kreatif. Kami adalah mitra terpercaya yang menawarkan solusi kustom yang menghadirkan pengalaman digital yang luar biasa. Dari konsep hingga peluncuran, kami memadukan keahlian teknis dengan kreativitas yang inovatif. Hubungi kami hari ini untuk mewujudkan visi digital Anda!">
     <title>Manifestasi</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />

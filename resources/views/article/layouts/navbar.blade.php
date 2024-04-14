@@ -1,5 +1,6 @@
 <header class="header">
-    <a href="#" class="logo">Manifestasi</a>
+    {{-- <a href="#" class="logo">Manifestasi</a> --}}
+    <img class="logo" src="{{ asset('images/manifestasi2.png') }}" width="200"/>
 
     <nav class="navbar">
       <a href="/#home">Home</a>
